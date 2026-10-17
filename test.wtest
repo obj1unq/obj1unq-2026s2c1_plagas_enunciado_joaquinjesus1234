@@ -1,0 +1,56 @@
+import barrio.*
+import elementos.Hogar.*
+import elementos.huerta.*
+import elementos.mascota.*
+
+describe " test de cuando es bueno o malo un hogar." {
+  test "hogar tiene 5 confort , 2 mugre, es bueno" {
+        const casa1 = new Hogar ( mugre= 2 , confort = 5)
+
+        assert.that(casa1.esBueno())
+  }
+
+  test "hogar tiene 2 confort , 2 mugre, no es bueno" {
+    
+        const casa2 = new Hogar (mugre= 2, confort = 2)
+
+        assert.notThat(casa2.esBueno())
+  }
+}
+
+describe "test de cuando una mascota es buena o no" {
+  test "mascota tiene 300 como nivel de salud, es buena" {
+    
+        const mascota1 = new Mascota(salud = 300)
+
+        assert.that(mascota1.esBueno())
+  }
+
+  test "mascota tiene 250 como nivel de salud, no es buena" {
+    
+        const mascota2 = new Mascota( salud=250 )
+
+        assert.notThat(mascota2.esBueno())
+}
+}
+
+describe "test de cuando una huerta es buena o no" {
+    
+  test "huerta con capacidad de produccion de 500 kg y el nivel a superar es 400" {
+
+        const huerta1 = new Huerta( produccion = 500)
+
+        mercado.nivelMinimoProduccion(400)
+
+        assert.that(huerta1.esBueno())
+  }
+
+  test "huerta con capacidad de produccion 200 y nivel a superar es 400" {
+
+        const huerta2 = new Huerta( produccion = 200)
+
+        mercado.nivelMinimoProduccion(400)
+
+        assert.notThat(huerta2.esBueno())  
+  }
+}
