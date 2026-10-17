@@ -1,3 +1,5 @@
+import plagas.cucaracha.*
+import plagas.mosquito.*
 import barrio.*
 import elementos.Hogar.*
 import elementos.huerta.*
@@ -77,5 +79,29 @@ describe " test de barrio si es copado o no" {
       const quilmes = new Barrio(elementos=[huerta2,mascota2,casa1])
 
       assert.that(quilmes.esCopado())
+  }
+}
+
+describe " plagas " {
+  test "nivel de daño de plaga de mosquitos " {
+      
+      const plagaMosquitos = new Mosquito(poblacion = 63)
+
+      assert.equals(63, plagaMosquitos.dano())
+
+  }
+
+  test " plaga de cucarachas puede transmitir enfermedad" {
+      
+      const plagaCucarachas = new Cucaracha(poblacion = 200 , pesoPromedio = 20)
+
+      assert.that(plagaCucarachas.puedeTransmitirEnfermedad())
+  }
+
+  test "plaga cucarachas no puede transmitir enfermedad por peso promedio" {
+    
+      const plagaCucarachas = new Cucaracha(poblacion = 200 , pesoPromedio = 8)
+
+      assert.notThat(plagaCucarachas.puedeTransmitirEnfermedad())
   }
 }
