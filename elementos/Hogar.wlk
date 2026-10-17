@@ -8,5 +8,10 @@ class Hogar {
 
         return mugre < confort/2
     }
+
+    method recibirAtaque(plaga) {
+        
+        mugre += plaga.poblacion()
+    }
 }
 

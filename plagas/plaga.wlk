@@ -9,14 +9,13 @@ class Plaga {
 
     method dano() {
       
-    
+        
     }
 
-    method transmitirEnfermedad() {
+    method realizarAtaque(elemento) {
         
+        elemento.recibirAtaque(self)
+        poblacion += self.poblacion()*0.1
         
-    } 
-
-
-
+    }
 }

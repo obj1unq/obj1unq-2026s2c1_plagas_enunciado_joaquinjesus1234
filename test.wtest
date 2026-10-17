@@ -1,3 +1,4 @@
+import plagas.garrapata.*
 import plagas.cucaracha.*
 import plagas.mosquito.*
 import barrio.*
@@ -103,5 +104,32 @@ describe " plagas " {
       const plagaCucarachas = new Cucaracha(poblacion = 200 , pesoPromedio = 8)
 
       assert.notThat(plagaCucarachas.puedeTransmitirEnfermedad())
+  }
+}
+
+
+describe " una huerta recibe un ataque" {
+  test " efecto de ataque en huerta de garrapatas" {
+      
+      const huerta3 = new Huerta (produccion = 80)
+      const plagaGarrapatas = new Garrapata(poblacion = 40)
+
+      huerta3.recibirAtaque(plagaGarrapatas)
+      assert.equals(62, huerta3.produccion()) // seria 80 - el 10% de 80 de el nivel de daño y como las garrapatas transmiten enfermedad restarle 10 más.
+
+  }
+}
+
+describe "efecto de ataque en plaga y elemento" {
+  test "efecto de ataque en cucaracha y en Huerta" {
+
+      const plagaCucarachas = new Cucaracha(poblacion = 40 , pesoPromedio = 11) // 40 / 2 = 20 
+      const huerta3 = new Huerta (produccion = 80)
+
+      plagaCucarachas.realizarAtaque(huerta3)
+      assert.equals(44, plagaCucarachas.poblacion())
+      assert.equals(13, plagaCucarachas.pesoPromedio())
+      assert.equals(68, huerta3.produccion())                     // 80 - 2 = 78
+    
   }
 }

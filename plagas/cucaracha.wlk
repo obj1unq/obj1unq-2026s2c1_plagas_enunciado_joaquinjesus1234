@@ -10,4 +10,11 @@ class Cucaracha inherits Plaga {
     override method puedeTransmitirEnfermedad() {
         return super() and pesoPromedio > 10 
     }
+
+    override method realizarAtaque(elemento) {
+
+        super(elemento)
+        pesoPromedio += 2
+        
+    }
 }   

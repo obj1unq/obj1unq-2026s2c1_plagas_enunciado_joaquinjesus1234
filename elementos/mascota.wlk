@@ -6,5 +6,14 @@ class Mascota {
         
         return salud > 250
     }
+
+    method recibirAtaque(plaga) {
+        
+        if ( plaga.puedeTransmitirEnfermedad() ){
+
+            salud -= plaga.dano()
+        }
+
+    }
 }
 
