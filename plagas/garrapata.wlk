@@ -1,5 +1,7 @@
-object garrapata {
+import plagas.pulga.*
+import plagas.plaga.*
+
+class Garrapata inherits Pulga{
     
-    var property poblacion = 0
     
 }

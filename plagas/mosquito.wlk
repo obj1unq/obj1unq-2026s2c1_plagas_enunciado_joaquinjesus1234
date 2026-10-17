@@ -1,6 +1,13 @@
-object mosquito {
+import plagas.plaga.*
+class Mosquito inherits Plaga{
 
-    var property poblacion = 0
+    override method dano() {
+        
+        return poblacion
+    }
 
-    
+    override method puedeTransmitirEnfermedad() {
+      
+        return super() and (poblacion % 3 == 0)
+    }
 }

@@ -1,4 +1,9 @@
-object pulga {
+import plagas.plaga.*
+class Pulga inherits Plaga {
   
-    var property poblacion = 0
+     override method dano() {
+
+        return poblacion * 2
+    }
+    
 }

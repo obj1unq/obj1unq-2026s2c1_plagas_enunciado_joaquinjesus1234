@@ -4,13 +4,13 @@ import elementos.huerta.*
 import elementos.mascota.*
 
 describe " test de cuando es bueno o malo un hogar." {
-  test "hogar tiene 5 confort , 2 mugre, es bueno" {
+  test "hogar es bueno" {
         const casa1 = new Hogar ( mugre= 2 , confort = 5)
 
         assert.that(casa1.esBueno())
   }
 
-  test "hogar tiene 2 confort , 2 mugre, no es bueno" {
+  test "hogar no es bueno" {
     
         const casa2 = new Hogar (mugre= 2, confort = 2)
 
@@ -19,14 +19,14 @@ describe " test de cuando es bueno o malo un hogar." {
 }
 
 describe "test de cuando una mascota es buena o no" {
-  test "mascota tiene 300 como nivel de salud, es buena" {
+  test "mascota es buena" {
     
         const mascota1 = new Mascota(salud = 300)
 
         assert.that(mascota1.esBueno())
   }
 
-  test "mascota tiene 250 como nivel de salud, no es buena" {
+  test "mascota no es buena" {
     
         const mascota2 = new Mascota( salud=250 )
 
@@ -36,7 +36,7 @@ describe "test de cuando una mascota es buena o no" {
 
 describe "test de cuando una huerta es buena o no" {
     
-  test "huerta con capacidad de produccion de 500 kg y el nivel a superar es 400" {
+  test "huerta que es buena" {
 
         const huerta1 = new Huerta( produccion = 500)
 
@@ -45,12 +45,37 @@ describe "test de cuando una huerta es buena o no" {
         assert.that(huerta1.esBueno())
   }
 
-  test "huerta con capacidad de produccion 200 y nivel a superar es 400" {
+  test "huerta que no es buena" {
 
         const huerta2 = new Huerta( produccion = 200)
 
         mercado.nivelMinimoProduccion(400)
 
         assert.notThat(huerta2.esBueno())  
+  }
+}
+
+describe " test de barrio si es copado o no" {
+
+      const huerta1 = new Huerta( produccion = 500)
+      const huerta2 = new Huerta( produccion = 200)
+      const mascota1 = new Mascota(salud = 300)
+      const mascota2 = new Mascota( salud=250 )
+      const casa1 = new Hogar ( mugre= 2 , confort = 5)
+      
+  test " es copado el barrio " {
+
+      
+      const berazategui = new Barrio(elementos= [huerta1,huerta2,casa1] ) 
+
+      assert.that(berazategui.esCopado())
+
+  }
+
+  test "no es copado el barrio" {
+    
+      const quilmes = new Barrio(elementos=[huerta2,mascota2,casa1])
+
+      assert.that(quilmes.esCopado())
   }
 }
