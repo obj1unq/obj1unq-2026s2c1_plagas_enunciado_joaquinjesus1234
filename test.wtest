@@ -1,0 +1,135 @@
+import plagas.garrapata.*
+import plagas.cucaracha.*
+import plagas.mosquito.*
+import barrio.*
+import elementos.Hogar.*
+import elementos.huerta.*
+import elementos.mascota.*
+
+describe " test de cuando es bueno o malo un hogar." {
+  test "hogar es bueno" {
+        const casa1 = new Hogar ( mugre= 2 , confort = 5)
+
+        assert.that(casa1.esBueno())
+  }
+
+  test "hogar no es bueno" {
+    
+        const casa2 = new Hogar (mugre= 2, confort = 2)
+
+        assert.notThat(casa2.esBueno())
+  }
+}
+
+describe "test de cuando una mascota es buena o no" {
+  test "mascota es buena" {
+    
+        const mascota1 = new Mascota(salud = 300)
+
+        assert.that(mascota1.esBueno())
+  }
+
+  test "mascota no es buena" {
+    
+        const mascota2 = new Mascota( salud=250 )
+
+        assert.notThat(mascota2.esBueno())
+}
+}
+
+describe "test de cuando una huerta es buena o no" {
+    
+  test "huerta que es buena" {
+
+        const huerta1 = new Huerta( produccion = 500)
+
+        mercado.nivelMinimoProduccion(400)
+
+        assert.that(huerta1.esBueno())
+  }
+
+  test "huerta que no es buena" {
+
+        const huerta2 = new Huerta( produccion = 200)
+
+        mercado.nivelMinimoProduccion(400)
+
+        assert.notThat(huerta2.esBueno())  
+  }
+}
+
+describe " test de barrio si es copado o no" {
+
+      const huerta1 = new Huerta( produccion = 500)
+      const huerta2 = new Huerta( produccion = 200)
+      const mascota1 = new Mascota(salud = 300)
+      const mascota2 = new Mascota( salud=250 )
+      const casa1 = new Hogar ( mugre= 2 , confort = 5)
+      
+  test " es copado el barrio " {
+
+      
+      const berazategui = new Barrio(elementos= [huerta1,huerta2,casa1] ) 
+
+      assert.that(berazategui.esCopado())
+
+  }
+
+  test "no es copado el barrio" {
+    
+      const quilmes = new Barrio(elementos=[huerta2,mascota2,casa1])
+
+      assert.that(quilmes.esCopado())
+  }
+}
+
+describe " plagas " {
+  test "nivel de daño de plaga de mosquitos " {
+      
+      const plagaMosquitos = new Mosquito(poblacion = 63)
+
+      assert.equals(63, plagaMosquitos.dano())
+
+  }
+
+  test " plaga de cucarachas puede transmitir enfermedad" {
+      
+      const plagaCucarachas = new Cucaracha(poblacion = 200 , pesoPromedio = 20)
+
+      assert.that(plagaCucarachas.puedeTransmitirEnfermedad())
+  }
+
+  test "plaga cucarachas no puede transmitir enfermedad por peso promedio" {
+    
+      const plagaCucarachas = new Cucaracha(poblacion = 200 , pesoPromedio = 8)
+
+      assert.notThat(plagaCucarachas.puedeTransmitirEnfermedad())
+  }
+}
+
+
+describe " una huerta recibe un ataque" {
+  test " efecto de ataque en huerta de garrapatas" {
+      
+      const huerta3 = new Huerta (produccion = 80)
+      const plagaGarrapatas = new Garrapata(poblacion = 40)
+
+      huerta3.recibirAtaque(plagaGarrapatas)
+      assert.equals(62, huerta3.produccion()) // seria 80 - el 10% de 80 de el nivel de daño y como las garrapatas transmiten enfermedad restarle 10 más.
+
+  }
+}
+
+describe "efecto de ataque en plaga y elemento" {
+  test "efecto de ataque en cucaracha y en Huerta" {
+
+      const plagaCucarachas = new Cucaracha(poblacion = 40 , pesoPromedio = 11) // 40 / 2 = 20 
+      const huerta3 = new Huerta (produccion = 80)
+
+      plagaCucarachas.realizarAtaque(huerta3)
+      assert.equals(44, plagaCucarachas.poblacion())
+      assert.equals(13, plagaCucarachas.pesoPromedio())
+      assert.equals(68, huerta3.produccion())                     // 80 - 2 = 78
+    
+  }
+}
