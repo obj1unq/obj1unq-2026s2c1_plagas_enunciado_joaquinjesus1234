@@ -1,13 +1,14 @@
-class Mascota {
+import elementos.elemento.*
+class Mascota inherits Elemento{
 
     var property salud = 0
 
-    method esBueno() {
+    override method esBueno() {
         
         return salud > 250
     }
 
-    method recibirAtaque(plaga) {
+    override method recibirAtaque(plaga) {
         
         if ( plaga.puedeTransmitirEnfermedad() ){
 

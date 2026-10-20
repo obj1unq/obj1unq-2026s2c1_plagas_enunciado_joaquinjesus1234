@@ -1,15 +1,16 @@
-class Hogar {
+import elementos.elemento.*
+class Hogar inherits Elemento{
   
     var property mugre = 0
     var property confort = 0 
 
 
-    method esBueno() {
+    override method esBueno() {
 
         return mugre < confort/2
     }
 
-    method recibirAtaque(plaga) {
+    override method recibirAtaque(plaga) {
         
         mugre += plaga.poblacion()
     }

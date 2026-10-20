@@ -1,13 +1,14 @@
-class Huerta{
+import elementos.elemento.*
+class Huerta inherits Elemento{
 
     var property produccion = 0
 
-    method esBueno() {
+    override method esBueno() {
         
         return  produccion > mercado.nivelMinimoProduccion()
     }
 
-    method recibirAtaque(plaga) {
+    override method recibirAtaque(plaga) {
         produccion -= plaga.dano()*0.1
 
         if(plaga.puedeTransmitirEnfermedad()){
